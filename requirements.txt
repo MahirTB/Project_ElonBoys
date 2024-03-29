@@ -1,0 +1,12 @@
+Django
+django-crispy-forms
+Pillow
+django-allauth
+django-countries
+django-ckeditor
+django-environ
+django-extensions
+django-debug-toolbar
+django-storages
+boto3
+django-cors-headers
