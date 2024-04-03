@@ -5,6 +5,8 @@ body {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif; /* Set your preferred font */
 }
+
+
 .navbar {
     background-color: #f1FAFF; /* d1e8e2 */
     margin-top: 24px;
