@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Model Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .member-info {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .member-info img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .links {
+            margin-top: 10px;
+        }
+        .links a {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Member Information</h1>
+        {% for member in members %}
+        <div class="member-info">
+            <h2>Name: {{ member.name }}</h2>
+            <img src="{{ member.image1.url }}" alt="Image 1">
+            <img src="{{ member.image2.url }}" alt="Image 2">
+            <p>Designation: {{ member.bio }}</p>
+            <p>{{ member.description }}</p>
+            <div class="links">
+                {% if member.github_link %}
+                <a href="{{ member.github_link }}" target="_blank">GitHub</a>
+                {% endif %}
+                {% if member.linkedin_link %}
+                <a href="{{ member.linkedin_link }}" target="_blank">LinkedIn</a>
+                {% endif %}
+                {% if member.instagram_link %}
+                <a href="{{ member.instagram_link }}" target="_blank">Instagram</a>
+                {% endif %}
+            </div>
+            {% if member.resume %}
+            <a href="{{ member.resume.url }}" target="_blank">Resume</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
