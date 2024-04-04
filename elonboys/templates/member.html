@@ -3,17 +3,17 @@
 {% block body %}
 
     <div>
-        <h1> <center>Honourable Proud Members of ELON BOYS</h1></center>
+        <h1><center>Honourable Proud Members of ELON BOYS</center></h1>
     </div>
     <section>
-        
+
         <div class="container">
-            {% for m in members%}
+            {% for m in members %}
             <div class="card">
                 <div class="front">
                     <img src="{{ m.image2.url }}" alt="Profile Image">
                     <div class="overlay">
-                        <p >{{m.description}}</p>
+                        <p>{{ m.description }}</p>
                     </div>
                 </div>
                 <div class="back">
@@ -23,25 +23,24 @@
                             <img src="{{ m.image1.url }}" alt="person profile image">
                           </div>
                         </div>
-                        
-                        <div class="name">{{m.name}}</div>
-                        <div class="bio">{{m.bio}}</div>
+
+                        <div class="name">{{ m.name }}</div>
+                        <div class="bio">{{ m.bio }}</div>
                         <div class="socials">
-                            <a href="{{m.facebook_link}}"><i class="fa fa-facebook social fb" style="font-size: 22px; line-height: 40px;"></i></a>
-                            <a href="{{m.github_link}}"><i class="fa fa-github social gh" style="font-size: 22px; line-height: 40px;"></i></a>
-                            <a href="{{m.instagram_link}}"><i class="fa fa-instagram social ig" style="font-size: 22px; line-height: 40px;"></i></a>
-                            <a href="{{m.linkedin_link}}"><i class="fa fa-linkedin social li" style="font-size: 22px; line-height: 40px;"></i></a>
+                            <a href="{{ m.facebook_link }}"><i class="fa fa-facebook social fb" style="font-size: 22px; line-height: 40px;"></i></a>
+                            <a href="{{ m.github_link }}"><i class="fa fa-github social gh" style="font-size: 22px; line-height: 40px;"></i></a>
+                            <a href="{{ m.instagram_link }}"><i class="fa fa-instagram social ig" style="font-size: 22px; line-height: 40px;"></i></a>
+                            <a href="{{ m.linkedin_link }}"><i class="fa fa-linkedin social li" style="font-size: 22px; line-height: 40px;"></i></a>
                         </div>
                         <div class="buttons">
-                            
-                          <button onclick=""><a href="{{ m.resume.url }}" target="_blank">Resume</a></button>
+                            <button><a href="{{ m.resume.url }}" target="_blank">Resume</a></button>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        
+
     </section>
-    
-    {% endblock %}
+
+{% endblock %}
