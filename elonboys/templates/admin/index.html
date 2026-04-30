@@ -1,0 +1,79 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="eb-dashboard-hero">
+    <div>
+        <p class="eb-eyebrow">Workspace</p>
+        <h2>Welcome back, {{ request.user.username }}</h2>
+        <p class="eb-muted">Manage ElonBoys content from one clean dashboard. Add members, publish posts, upload photos, and keep resources fresh.</p>
+    </div>
+    <div class="eb-dashboard-actions">
+        <a href="/" target="_blank" rel="noreferrer">Open Site</a>
+        <a href="/tools/" target="_blank" rel="noreferrer">Open Tools</a>
+    </div>
+</div>
+
+<div class="eb-stat-grid">
+    <div class="eb-stat-card">
+        <span>Admin apps</span>
+        <strong>{{ app_list|length }}</strong>
+    </div>
+    <div class="eb-stat-card">
+        <span>Quick path</span>
+        <strong>Content</strong>
+    </div>
+    <div class="eb-stat-card">
+        <span>Status</span>
+        <strong>Live</strong>
+    </div>
+</div>
+
+<div class="eb-admin-grid">
+    {% if app_list %}
+        {% for app in app_list %}
+        <section class="eb-admin-app">
+            <div class="eb-app-heading">
+                <div>
+                    <p class="eb-eyebrow">{{ app.name }}</p>
+                    <h3>{{ app.name }}</h3>
+                </div>
+                {% if app.app_url %}
+                <a href="{{ app.app_url }}" class="eb-view-all">View all</a>
+                {% endif %}
+            </div>
+
+            <div class="eb-model-list">
+                {% for model in app.models %}
+                <div class="eb-model-row">
+                    <div>
+                        {% if model.admin_url %}
+                        <a href="{{ model.admin_url }}" class="eb-model-name">{{ model.name }}</a>
+                        {% else %}
+                        <span class="eb-model-name">{{ model.name }}</span>
+                        {% endif %}
+                        <p>Manage {{ model.name|lower }}</p>
+                    </div>
+                    <div class="eb-model-actions">
+                        {% if model.add_url %}
+                        <a href="{{ model.add_url }}" class="eb-add-link">Add</a>
+                        {% endif %}
+                        {% if model.admin_url %}
+                        <a href="{{ model.admin_url }}" class="eb-change-link">Browse</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    {% else %}
+        <section class="eb-admin-app">
+            <h3>No apps available</h3>
+            <p class="eb-muted">{% translate "You don't have permission to view or edit anything." %}</p>
+        </section>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}

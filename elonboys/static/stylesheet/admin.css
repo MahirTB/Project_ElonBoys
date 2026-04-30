@@ -1,0 +1,426 @@
+:root {
+    --primary: #14532d; /* Deep green for save buttons and primary actions. */
+    --secondary: #233135; /* Cyan for secondary branding, headers, and links. */
+    --accent: #fff7e8; /* Coral accent for small labels and hover highlights. */
+    --primary-fg: #ffffff; /* White foreground text used on dark buttons. */
+    --body-bg: #fff7e8; /* Cream shade for the main admin background. */
+    --body-fg: #101828; /* Main readable dark text color. */
+    --body-quiet-color: rgba(16, 24, 40, 0.62); /* Muted text for helper copy. */
+    --border-color: rgba(16, 24, 40, 0.1); /* Soft border color for panels and cards. */
+    --hairline-color: rgba(16, 24, 40, 0.08); /* Extra light divider color for tables. */
+    --link-fg: #233135; /* Cyan color for normal links. */
+    --link-hover-color: #14532d; /* Deep green color when links are hovered. */
+    --header-bg: #fffaf0; /* Cream shade for the top admin header. */
+    --header-color: #101828; /* Dark text color inside the header. */
+    --breadcrumbs-bg: #fff7e8; /* Cream background for breadcrumb area. */
+    --breadcrumbs-fg: #101828; /* Dark breadcrumb text for better visibility. */
+    --selected-bg: #dff7ff; /* Light sky blue for selected rows/options. */
+    --darkened-bg: #fffaf0; /* Cream panel background used by Django internals. */
+    --body-loud-color: #101828; /* Strong heading text color. */
+    --font-family-primary: "Inter", system-ui, sans-serif; /* Main admin font family. */
+    --font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; /* Font for code-style text. */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--body-bg); /* Applies the cream background color. */
+    color: var(--body-fg); /* Sets default text color. */
+    font-family: var(--font-family-primary); /* Sets admin font. */
+}
+
+a:link,
+a:visited {
+    color: var(--link-fg);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+#header {
+    align-items: center;
+    background: rgba(254, 255, 240, 0.92); /* Cream top header background. */
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 18px 48px rgba(16, 24, 40, 0.08);
+    min-height: 78px;
+    padding: 0.85rem 2rem;
+}
+
+.eb-admin-brand {
+    align-items: center;
+    display: flex;
+    gap: 0.85rem;
+}
+
+.eb-admin-logo {
+    align-items: center;
+    background: var(--secondary); /* Cyan EB logo background. */
+    border-radius: 10px;
+    color: #ffffff !important;
+    display: inline-flex;
+    font-size: 0.85rem;
+    font-weight: 900;
+    height: 44px;
+    justify-content: center;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    width: 44px;
+}
+
+#branding h1 {
+    font-size: 1.05rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+#branding h1 a:link,
+#branding h1 a:visited {
+    color: var(--secondary); /* Cyan brand title color. */
+}
+
+#branding p {
+    color: var(--body-quiet-color);
+    font-size: 0.78rem;
+    margin: 0.15rem 0 0;
+}
+
+#user-tools {
+    color: var(--body-quiet-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+#user-tools a,
+.eb-admin-site-link {
+    border-radius: 8px;
+    color: var(--secondary) !important;
+    font-weight: 800;
+    padding: 0.55rem 0.75rem;
+    text-decoration: none;
+}
+
+#user-tools a:hover,
+.eb-admin-site-link:hover {
+    background: rgba(8, 145, 178, 0.12); /* Light cyan hover background for top links. */
+}
+
+div.breadcrumbs {
+    background: transparent;
+    color: var(--secondary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 1rem 2rem 0;
+    margin-bottom: 8px;
+}
+
+div.breadcrumbs a {
+    color: var(--secondary) !important;
+    font-weight: 800;
+}
+
+div.breadcrumbs a:hover {
+    color: #d8b77a !important;
+}
+
+#content {
+    padding: 2rem;
+}
+
+#content-main {
+    float: none;
+    width: 100%;
+}
+
+.module,
+.inline-group,
+#changelist,
+.eb-dashboard-hero,
+.eb-stat-card,
+.eb-admin-app {
+    background: rgba(255, 250, 240, 0.9); /* Cream card/panel background. */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(16, 24, 40, 0.08);
+    overflow: hidden;
+}
+
+.eb-dashboard-hero {
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+}
+
+.eb-eyebrow {
+    color: #c5a56a;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    margin: 0 0 0.5rem;
+    text-transform: uppercase;
+}
+
+.eb-dashboard-hero h2,
+.eb-admin-app h3 {
+    color: var(--secondary);
+    font-size: 1.75rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.eb-muted {
+    color: var(--body-quiet-color);
+    line-height: 1.7;
+    margin: 0.75rem 0 0;
+    max-width: 48rem;
+}
+
+.eb-dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.eb-dashboard-actions a,
+.eb-add-link,
+.eb-change-link,
+.eb-view-all {
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 900;
+    padding: 0.7rem 0.9rem;
+    text-decoration: none;
+}
+
+.eb-dashboard-actions a,
+.eb-add-link {
+    background: var(--secondary); /* Cyan for dashboard shortcut buttons. */
+    color: #ffffff !important; /* White text on dashboard shortcut buttons. */
+}
+
+.eb-change-link,
+.eb-view-all {
+    background: rgba(8, 145, 178, 0.12); /* Light cyan background for secondary dashboard links. */
+    color: var(--secondary) !important; /* Cyan text for secondary dashboard links. */
+}
+
+.eb-stat-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 1rem;
+}
+
+.eb-stat-card {
+    padding: 1.2rem;
+}
+
+.eb-stat-card span {
+    color: var(--body-quiet-color);
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.eb-stat-card strong {
+    color: var(--secondary);
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-top: 0.25rem;
+}
+
+.eb-admin-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.eb-admin-app {
+    padding: 1.25rem;
+}
+
+.eb-app-heading {
+    align-items: start;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.eb-model-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.eb-model-row {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.62); /* Soft white row background inside cream cards. */
+    border: 1px solid var(--hairline-color);
+    border-radius: 10px;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.eb-model-name {
+    color: var(--secondary) !important;
+    font-size: 1rem;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.eb-model-row p {
+    color: var(--body-quiet-color);
+    margin: 0.35rem 0 0;
+}
+
+.eb-model-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: #d8b77a; /* Cyan module heading background. */
+    color: #ffffff; /* White module heading text. */
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    padding: 0.9rem 1rem;
+    text-transform: uppercase;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+td,
+th {
+    border-bottom: 1px solid var(--hairline-color);
+    font-size: 0.9rem;
+    padding: 0.9rem 1rem;
+}
+
+thead th {
+    background: #dff7ff; /* Light sky blue table heading background. */
+    color: var(--secondary); /* Cyan table heading text. */
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+    background: var(--primary) !important; /* Deep green for all admin buttons, including save buttons. */
+    border: 0; /* Removes default button border. */
+    border-radius: 8px; /* Rounds button corners. */
+    color: #ffffff !important; /* White text on all buttons. */
+    font-weight: 900; /* Bold button text. */
+    padding: 0.75rem 1rem; /* Button inner spacing. */
+}
+
+.button.default,
+input[type=submit].default,
+.submit-row input.default {
+    background: var(--primary) !important; /* Deep green for default save buttons. */
+    color: #ffffff !important; /* White text on default save buttons. */
+}
+
+input,
+textarea,
+select,
+.vTextField {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.65rem 0.75rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--secondary); /* Cyan border when inputs are focused. */
+    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.16); /* Soft cyan focus ring around inputs. */
+    outline: none;
+}
+
+#nav-sidebar .current-app .section,
+#nav-sidebar .current-model {
+    background: #dff7ff !important; /* Light sky blue selected sidebar state. */
+}
+
+#nav-sidebar tr.current-model,
+#nav-sidebar tr.selected,
+#nav-sidebar .current-model th,
+#nav-sidebar .current-model td {
+    background: #dff7ff !important; /* Light sky blue selected sidebar rows. */
+}
+
+#nav-sidebar tr.current-model a,
+#nav-sidebar tr.selected a {
+    color: var(--secondary) !important;
+    font-weight: 900;
+}
+
+#nav-sidebar .current-app .section,
+#nav-sidebar .current-model a,
+#nav-sidebar .current-model th,
+#nav-sidebar .current-model td {
+    color: var(--secondary) !important;
+}
+
+#nav-sidebar a {
+    color: #0f3f4a !important; /* Dark cyan sidebar link text. */
+}
+
+#nav-sidebar a:hover {
+    color: var(--accent) !important;
+}
+
+#changelist-filter {
+    background: rgba(255, 250, 240, 0.9); /* Cream filter panel background. */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(16, 24, 40, 0.08);
+    overflow: hidden;
+}
+
+#changelist-filter h2 {
+    background: var(--secondary); /* Cyan filter heading background. */
+    color: #ffffff; /* White filter heading text. */
+}
+
+@media (max-width: 900px) {
+    #header,
+    .eb-dashboard-hero,
+    .eb-model-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    #content {
+        padding: 1rem;
+    }
+
+    .eb-stat-grid,
+    .eb-admin-grid {
+        grid-template-columns: 1fr;
+    }
+}

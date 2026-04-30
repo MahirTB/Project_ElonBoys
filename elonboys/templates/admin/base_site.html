@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}ElonBoys Admin{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'stylesheet/admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div class="eb-admin-brand">
+    <a href="{% url 'admin:index' %}" class="eb-admin-logo" aria-label="ElonBoys admin home">EB</a>
+    <div>
+        <h1 id="site-name"><a href="{% url 'admin:index' %}">ElonBoys Command Center</a></h1>
+        <p>Content, members, tools, and site operations</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<a class="eb-admin-site-link" href="/" target="_blank" rel="noreferrer">View Website</a>
+{% endblock %}
