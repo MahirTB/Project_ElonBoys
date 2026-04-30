@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}ElonBoys | Blogs{% endblock %}
+
+{% block body %}
+<section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Blogs</p>
+        <h1 class="mt-3 max-w-3xl text-4xl font-extrabold tracking-normal text-ink sm:text-5xl">Thoughts, builds, research notes, and campus stories.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/68">A place for ElonBoys members to publish what they are learning, building, and figuring out along the way.</p>
+    </div>
+</section>
+
+<section class="bg-paper py-12">
+    <div class="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
+        {% for post in posts %}
+        <article class="member-card overflow-hidden">
+            {% if post.cover_image %}
+            <div class="h-52 overflow-hidden bg-ink/5">
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="h-full w-full object-cover">
+            </div>
+            {% endif %}
+            <div class="p-6">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-coral">{{ post.author|default:"ElonBoys" }}{% if post.published_at %} · {{ post.published_at }}{% endif %}</p>
+                <h3 class="mt-3 text-xl font-extrabold text-ink">{{ post.title }}</h3>
+                <p class="mt-3 leading-7 text-ink/62">{{ post.excerpt }}</p>
+            </div>
+        </article>
+        {% empty %}
+        <article class="feature-card">
+            <i class="fa fa-code text-2xl text-moss" aria-hidden="true"></i>
+            <h3>Project logs</h3>
+            <p>Short writeups about apps, experiments, hackathon ideas, and engineering lessons.</p>
+        </article>
+        <article class="feature-card">
+            <i class="fa fa-flask text-2xl text-coral" aria-hidden="true"></i>
+            <h3>Research notes</h3>
+            <p>Machine learning, data, systems, and academic topics explained in our own words.</p>
+        </article>
+        <article class="feature-card">
+            <i class="fa fa-pencil text-2xl text-gold" aria-hidden="true"></i>
+            <h3>Member essays</h3>
+            <p>Personal reflections from university life, internships, competitions, and learning paths.</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

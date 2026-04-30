@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}ElonBoys | Resources{% endblock %}
+
+{% block body %}
+<section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Resources</p>
+        <h1 class="mt-3 max-w-3xl text-4xl font-extrabold tracking-normal text-ink sm:text-5xl">Useful links, notes, and tools for learning faster.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/68">A curated shelf for study material, project references, career prep, and tools the group keeps coming back to.</p>
+    </div>
+</section>
+
+<section class="bg-paper py-12">
+    <div class="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
+        {% for resource in resources %}
+        <article class="feature-card">
+            <i class="fa fa-link text-2xl text-moss" aria-hidden="true"></i>
+            <p class="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-coral">{{ resource.get_category_display }}</p>
+            <h3>{{ resource.title }}</h3>
+            <p>{{ resource.description }}</p>
+            {% if resource.link %}
+            <a href="{{ resource.link }}" target="_blank" rel="noreferrer" class="mt-5 inline-flex text-sm font-bold text-coral hover:text-ink">Open link</a>
+            {% elif resource.file %}
+            <a href="{{ resource.file.url }}" target="_blank" rel="noreferrer" class="mt-5 inline-flex text-sm font-bold text-coral hover:text-ink">Download file</a>
+            {% endif %}
+        </article>
+        {% empty %}
+        <article class="feature-card">
+            <i class="fa fa-book text-2xl text-moss" aria-hidden="true"></i>
+            <h3>Course notes</h3>
+            <p>Organized references for algorithms, databases, networking, software engineering, and AI.</p>
+        </article>
+        <article class="feature-card">
+            <i class="fa fa-briefcase text-2xl text-coral" aria-hidden="true"></i>
+            <h3>Career prep</h3>
+            <p>Resume examples, interview practice, internship resources, and portfolio inspiration.</p>
+        </article>
+        <article class="feature-card">
+            <i class="fa fa-wrench text-2xl text-gold" aria-hidden="true"></i>
+            <h3>Developer tools</h3>
+            <p>Editors, libraries, templates, deployment guides, and utilities for everyday building.</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

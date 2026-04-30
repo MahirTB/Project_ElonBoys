@@ -1,46 +1,81 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ElonBoys | Members{% endblock %}
 
 {% block body %}
-
-    <div>
-        <h1><center>Honourable Proud Members of ELON BOYS</center></h1>
+<section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Member directory</p>
+            <h1 class="mt-3 text-4xl font-extrabold tracking-normal text-ink sm:text-5xl">Proud members of ElonBoys.</h1>
+            <p class="mt-5 text-lg leading-8 text-ink/68">Meet the people behind the projects, experiments, notes, and late-night debugging sessions.</p>
+        </div>
     </div>
-    <section>
+</section>
 
-        <div class="container">
+<section class="bg-paper py-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {% for m in members %}
-            <div class="card">
-                <div class="front">
-                    <img src="{{ m.image2.url }}" alt="Profile Image">
-                    <div class="overlay">
-                        <p>{{ m.description }}</p>
+            <article class="member-card group">
+                <div class="relative h-72 overflow-hidden bg-ink/5">
+                    <img src="{{ m.image2.url }}" alt="{{ m.name }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" data-fallback-src="{% static 'img/safi-pro2.jpg' %}">
+                    <div class="absolute inset-x-0 bottom-0 bg-ink/72 p-4 text-white backdrop-blur">
+                        <p class="line-clamp-2 text-sm leading-6 text-white/85">{{ m.description|default:"Computer science student and ElonBoys member." }}</p>
                     </div>
                 </div>
-                <div class="back">
-                    <div class="box">
-                        <div class="pfp">
-                          <div class="inner-area">
-                            <img src="{{ m.image1.url }}" alt="person profile image">
-                          </div>
-                        </div>
 
-                        <div class="name">{{ m.name }}</div>
-                        <div class="bio">{{ m.bio }}</div>
-                        <div class="socials">
-                            <a href="{{ m.facebook_link }}"><i class="fa fa-facebook social fb" style="font-size: 22px; line-height: 40px;"></i></a>
-                            <a href="{{ m.github_link }}"><i class="fa fa-github social gh" style="font-size: 22px; line-height: 40px;"></i></a>
-                            <a href="{{ m.instagram_link }}"><i class="fa fa-instagram social ig" style="font-size: 22px; line-height: 40px;"></i></a>
-                            <a href="{{ m.linkedin_link }}"><i class="fa fa-linkedin social li" style="font-size: 22px; line-height: 40px;"></i></a>
-                        </div>
-                        <div class="buttons">
-                            <button><a href="{{ m.resume.url }}" target="_blank">Resume</a></button>
+                <div class="p-5">
+                    <div class="flex items-start gap-4">
+                        <img src="{{ m.image1.url }}" alt="{{ m.name }} profile photo" class="h-16 w-16 rounded-lg object-cover ring-1 ring-ink/10" data-fallback-src="{% static 'img/safi-pro1.jpg' %}">
+                        <div class="min-w-0">
+                            <h2 class="truncate text-xl font-extrabold text-ink">{{ m.name }}</h2>
+                            <p class="mt-1 line-clamp-2 text-sm leading-6 text-ink/62">{{ m.bio }}</p>
                         </div>
                     </div>
+
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        {% if m.facebook_link %}
+                        <a class="social-link" href="{{ m.facebook_link }}" target="_blank" rel="noreferrer" aria-label="{{ m.name }} Facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                        {% if m.github_link %}
+                        <a class="social-link" href="{{ m.github_link }}" target="_blank" rel="noreferrer" aria-label="{{ m.name }} GitHub">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                        {% if m.instagram_link %}
+                        <a class="social-link" href="{{ m.instagram_link }}" target="_blank" rel="noreferrer" aria-label="{{ m.name }} Instagram">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                        {% if m.linkedin_link %}
+                        <a class="social-link" href="{{ m.linkedin_link }}" target="_blank" rel="noreferrer" aria-label="{{ m.name }} LinkedIn">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+
+                    {% if m.resume %}
+                    <a href="{{ m.resume.url }}" target="_blank" rel="noreferrer" class="mt-5 inline-flex w-full items-center justify-center rounded-lg bg-ink px-4 py-3 text-sm font-bold text-white transition hover:bg-moss">
+                        View resume
+                    </a>
+                    {% else %}
+                    <span class="mt-5 inline-flex w-full items-center justify-center rounded-lg border border-ink/10 px-4 py-3 text-sm font-bold text-ink/45">
+                        Resume coming soon
+                    </span>
+                    {% endif %}
                 </div>
+            </article>
+            {% empty %}
+            <div class="rounded-lg border border-ink/10 bg-white p-8 text-center">
+                <h2 class="text-xl font-extrabold text-ink">No members yet</h2>
+                <p class="mt-2 text-ink/60">Add members in the Django admin to populate this page.</p>
             </div>
             {% endfor %}
         </div>
-
-    </section>
-
+    </div>
+</section>
 {% endblock %}

@@ -1,49 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElonBboys</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-</head>
-<body>
-    <div class="navbar">
-        <a href="/index.html" class="current-page">HOME</a>
-        <a href="/member.html">MEMBERS</a>
-        <a href="resume.html">BLOGS</a>
-        <a href="resume.html">ACTIVITIES</a>
-        <a href="resume.html">RESOURCES</a>
-        <a href="resume.html">PHOTOS</a>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ElonBoys | Home{% endblock %}
+
+{% block body %}
+<section class="relative overflow-hidden border-b border-ink/10 bg-white">
+    <div class="mx-auto grid min-h-[calc(100vh-74px)] max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
+        <div class="max-w-3xl">
+            <p class="mb-5 inline-flex rounded-lg border border-moss/20 bg-moss/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.22em] text-moss">CSE students. Builders. Friends.</p>
+            <h1 class="text-5xl font-extrabold leading-[1.02] tracking-normal text-ink sm:text-6xl lg:text-7xl">
+                Portfolios, resources, and the good chaos of university life.
+            </h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/68">
+                ElonBoys is a collective from the University of Asia Pacific sharing member profiles, learning resources, activities, and the memories that make the grind worth it.
+            </p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="/members/" class="inline-flex items-center justify-center rounded-lg bg-ink px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-moss">
+                    Meet the members
+                </a>
+                <a href="#resources" class="inline-flex items-center justify-center rounded-lg border border-ink/15 bg-white px-5 py-3 text-sm font-bold text-ink transition hover:border-moss hover:text-moss">
+                    Browse resources
+                </a>
+            </div>
+        </div>
+
+        <div class="relative">
+            <div class="hero-frame" data-profile-slideshow>
+                {% for member in members %}
+                    <img src="{{ member.image2.url }}" alt="{{ member.name }}" class="profile-slide {% if forloop.first %}profile-slide-active{% endif %}" data-fallback-src="{% static 'img/safi-pro2.jpg' %}">
+                {% empty %}
+                    <img src="{% static 'img/safi-pro2.jpg' %}" alt="ElonBoys member" class="profile-slide profile-slide-active">
+                {% endfor %}
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-3" data-profile-thumbnails>
+                {% for member in members|slice:":3" %}
+                    <div class="overflow-hidden rounded-lg border border-ink/10 bg-white">
+                        <img src="{{ member.image2.url }}" alt="{{ member.name }}" class="hero-thumb h-28 w-full object-cover" data-fallback-src="{% static 'img/safi-pro2.jpg' %}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+</section>
 
-    <section id = "hero">
-        <div class="image-container">
-            <!-- <h5>Discover the perfect blend of aesthetics and <br>functionality with our diverse range of furnishings</h5> -->
-            <img src="Assets/pic1.jpg" alt="Image 1" class="active">
-            <img src="Assets/pic2.jpg" alt="Image 2">
-            <img src="Assets/pic3.jpg" alt="Image 3">
-            <img src="Assets/pic4.jpg" alt="Image 4">
+<section class="bg-paper py-16">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+        <div>
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Who are we?</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-ink sm:text-4xl">A small crew with a lot to ship.</h2>
         </div>
-    </section>
-    
-    <!-- <div class="slider-container">
-        <div class="slider">
-          <div class="slide"><img src="Assets/pic1.jpg" alt="Slide 1"></div>
-          <div class="slide"><img src="Assets/pic2.jpg" alt="Slide 2"></div>
-          <div class="slide"><img src="Assets/pic3.jpg" alt="Slide 3"></div>
-          <div class="slide"><img src="Assets/pic4.jpg" alt="Slide 3"></div>
+        <div class="grid gap-5 text-base leading-8 text-ink/70 md:grid-cols-2">
+            <p>We are computer science students from UAP building a shared place for portfolios, project notes, useful resources, and campus activities.</p>
+            <!-- <p>The site is meant to feel like a living archive: clean enough for professional profiles, lively enough for the moments we will laugh about later.</p> -->
         </div>
-    </div> -->
-     <section>
-        <div class="content">
-        <h2>Who are we?</h2>
-        <p>We're a bunch of computer science buffs from the University of Asia Pacific, feeling more frustrated than debugging a code with no semicolons! 
-        Our mission? To whip up a website for sharing our epic portfolios, nifty resources, and of course, <b>the memories we'll laugh about later.</b>
-        </p>
-    </div> 
-    </section> 
+    </div>
+</section>
 
-    <script src="script.js"></script>
-</body>
-</html>
+<section id="resources" class="bg-white py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+                <p class="text-sm font-bold uppercase tracking-[0.22em] text-moss">What lives here</p>
+                <h2 class="mt-3 text-3xl font-extrabold tracking-normal text-ink">Everything the group needs in one place.</h2>
+            </div>
+            <a href="/members/" class="text-sm font-bold text-coral hover:text-ink">View member directory</a>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-3">
+            <article class="feature-card">
+                <i class="fa fa-user text-2xl text-moss" aria-hidden="true"></i>
+                <h3>Member profiles</h3>
+                <p>Portfolio links, resumes, social profiles, and a quick read on each member's interests.</p>
+            </article>
+            <article class="feature-card">
+                <i class="fa fa-book text-2xl text-coral" aria-hidden="true"></i>
+                <h3>Shared resources</h3>
+                <p>Notes, tools, references, and useful material collected while learning together.</p>
+            </article>
+            <article class="feature-card">
+                <i class="fa fa-camera-retro text-2xl text-gold" aria-hidden="true"></i>
+                <h3>Activities and photos</h3>
+                <p>A timeline for group work, campus life, and the small wins between deadlines.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="blogs" class="bg-ink py-16 text-white">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div>
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-gold">Coming next</p>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-normal">Blogs, activities, resources, and many more.</h2>
+        </div>
+        <!-- <p class="text-lg leading-8 text-white/70">
+            The design is ready for the next sections. Add the models and views, and this frontend can grow into a full club-style platform without changing the visual system.
+        </p> -->
+    </div>
+</section>
+{% endblock %}

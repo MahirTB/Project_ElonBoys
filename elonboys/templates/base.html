@@ -1,26 +1,85 @@
-<html lang="en">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/stylesheet/style.css">
-    <!-- <link rel="stylesheet" href="/static/stylesheet/index.html"> -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
-    <script src="https://kit.fontawesome.com/5f4c1bb038.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <title>{% block title %}ElonBoys{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+                    },
+                    colors: {
+                        ink: "#101828",
+                        paper: "#f7f8f4",
+                        moss: "#44624a",
+                        coral: "#d56b4d",
+                        gold: "#d8a236",
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'stylesheet/style.css' %}">
 </head>
+<body class="bg-paper text-ink antialiased">
+    <header class="sticky top-0 z-50 border-b border-ink/10 bg-paper/90 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+            <a href="/" class="flex items-center gap-3">
+                <span class="grid h-10 w-10 place-items-center rounded-lg bg-ink text-sm font-black tracking-tight text-white">EB</span>
+                <span>
+                    <span class="block text-sm font-extrabold uppercase tracking-[0.22em] text-moss">ElonBoys</span>
+                    <span class="block text-xs text-ink/55">UAP CSE collective</span>
+                </span>
+            </a>
 
-<body>
-    <div class="navbar">
-        <a href="/index.html">HOME</a>
-        <a href="/member.html"class="current-page">MEMBERS</a>
-        <a href="resume.html">BLOGS</a>
-        <a href="resume.html">ACTIVITIES</a>
-        <a href="resume.html">RESOURCES</a>
-        <a href="resume.html">PHOTOS</a>
-    </div>
-    {% block body %}{% endblock %}
+            <button class="rounded-lg border border-ink/15 p-2 text-ink md:hidden" type="button" data-menu-button aria-label="Toggle navigation">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
 
+            <div class="hidden items-center gap-1 md:flex">
+                <a class="nav-link {% if request.path == '/' or request.path == '/index.html' %}nav-link-active{% endif %}" href="/">Home</a>
+                <a class="nav-link {% if request.path == '/members/' or request.path == '/member.html' %}nav-link-active{% endif %}" href="/members/">Members</a>
+                <a class="nav-link {% if request.path == '/blogs/' %}nav-link-active{% endif %}" href="/blogs/">Blogs</a>
+                <a class="nav-link {% if request.path == '/activities/' %}nav-link-active{% endif %}" href="/activities/">Activities</a>
+                <a class="nav-link {% if request.path == '/resources/' %}nav-link-active{% endif %}" href="/resources/">Resources</a>
+                <a class="nav-link {% if request.path == '/photos/' %}nav-link-active{% endif %}" href="/photos/">Photos</a>
+                <a class="nav-link {% if request.path == '/tools/' %}nav-link-active{% endif %}" href="/tools/">Tools</a>
+            </div>
+        </nav>
+
+        <div class="hidden border-t border-ink/10 px-4 pb-4 md:hidden" data-mobile-menu>
+            <div class="grid gap-2">
+                <a class="mobile-nav-link" href="/">Home</a>
+                <a class="mobile-nav-link" href="/members/">Members</a>
+                <a class="mobile-nav-link" href="/blogs/">Blogs</a>
+                <a class="mobile-nav-link" href="/activities/">Activities</a>
+                <a class="mobile-nav-link" href="/resources/">Resources</a>
+                <a class="mobile-nav-link" href="/photos/">Photos</a>
+                <a class="mobile-nav-link" href="/tools/">Tools</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="border-t border-ink/10 bg-white/60">
+        <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 text-sm text-ink/60 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+            <p>Built for portfolios, resources, and memories from the ElonBoys crew.</p>
+            <p class="font-medium text-ink">University of Asia Pacific</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'stylesheet/script.js' %}"></script>
 </body>
 </html>

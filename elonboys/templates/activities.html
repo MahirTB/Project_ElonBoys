@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}ElonBoys | Activities{% endblock %}
+
+{% block body %}
+<section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Activities</p>
+        <h1 class="mt-3 max-w-3xl text-4xl font-extrabold tracking-normal text-ink sm:text-5xl">The things we do beyond routine classes.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/68">Workshops, projects, contests, group study sessions, meetups, and all the small events that keep the crew moving.</p>
+    </div>
+</section>
+
+<section class="bg-paper py-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-5 md:grid-cols-2">
+            {% for activity in activities %}
+            <article class="member-card overflow-hidden">
+                {% if activity.image %}
+                <div class="h-56 overflow-hidden bg-ink/5">
+                    <img src="{{ activity.image.url }}" alt="{{ activity.title }}" class="h-full w-full object-cover">
+                </div>
+                {% endif %}
+                <div class="p-6">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-coral">{% if activity.event_date %}{{ activity.event_date }}{% else %}Activity{% endif %}{% if activity.location %} · {{ activity.location }}{% endif %}</p>
+                    <h3 class="mt-3 text-xl font-extrabold text-ink">{{ activity.title }}</h3>
+                    <p class="mt-3 leading-7 text-ink/62">{{ activity.description }}</p>
+                </div>
+            </article>
+            {% empty %}
+            <article class="feature-card">
+                <i class="fa fa-users text-2xl text-moss" aria-hidden="true"></i>
+                <h3>Group sessions</h3>
+                <p>Shared study, project planning, code reviews, and skill practice with classmates.</p>
+            </article>
+            <article class="feature-card">
+                <i class="fa fa-trophy text-2xl text-gold" aria-hidden="true"></i>
+                <h3>Competitions</h3>
+                <p>Programming contests, hackathons, technical events, and team challenges.</p>
+            </article>
+            <article class="feature-card">
+                <i class="fa fa-laptop text-2xl text-coral" aria-hidden="true"></i>
+                <h3>Build days</h3>
+                <p>Focused days for shipping portfolios, tools, dashboards, ML demos, and web apps.</p>
+            </article>
+            <article class="feature-card">
+                <i class="fa fa-calendar text-2xl text-moss" aria-hidden="true"></i>
+                <h3>Campus moments</h3>
+                <p>Snapshots from club work, department events, presentations, and friends being friends.</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

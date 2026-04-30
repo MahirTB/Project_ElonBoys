@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ElonBoys | Photos{% endblock %}
+
+{% block body %}
+<section class="border-b border-ink/10 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Photos</p>
+        <h1 class="mt-3 max-w-3xl text-4xl font-extrabold tracking-normal text-ink sm:text-5xl">A visual archive of the crew.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/68">Member photos and moments from the ElonBoys collection, ready to become a full gallery as more uploads are added.</p>
+    </div>
+</section>
+
+<section class="bg-paper py-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {% for photo in photos %}
+            <figure class="member-card group">
+                <div class="aspect-[4/5] overflow-hidden bg-ink/5">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+                </div>
+                <figcaption class="p-4">
+                    <p class="text-sm font-bold text-ink">{{ photo.title }}</p>
+                    {% if photo.caption %}
+                    <p class="mt-1 text-sm leading-6 text-ink/60">{{ photo.caption }}</p>
+                    {% endif %}
+                </figcaption>
+            </figure>
+            {% empty %}
+            {% for member in members %}
+            <figure class="member-card group">
+                <div class="aspect-[4/5] overflow-hidden bg-ink/5">
+                    <img src="{{ member.image2.url }}" alt="{{ member.name }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" data-fallback-src="{% static 'img/safi-pro2.jpg' %}">
+                </div>
+                <figcaption class="p-4 text-sm font-bold text-ink">{{ member.name }}</figcaption>
+            </figure>
+            {% empty %}
+            <div class="rounded-lg border border-ink/10 bg-white p-8 text-center">
+                <h2 class="text-xl font-extrabold text-ink">No photos yet</h2>
+                <p class="mt-2 text-ink/60">Add member images in the Django admin to populate this gallery.</p>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
