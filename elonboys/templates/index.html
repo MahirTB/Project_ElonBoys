@@ -5,10 +5,10 @@
 
 {% block body %}
 <section class="relative overflow-hidden border-b border-ink/10 bg-white">
-    <div class="mx-auto grid min-h-[calc(100vh-74px)] max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
+    <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 sm:px-6 lg:min-h-[calc(100vh-74px)] lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
         <div class="max-w-3xl">
             <p class="mb-5 inline-flex rounded-lg border border-moss/20 bg-moss/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.22em] text-moss">CSE students. Builders. Friends.</p>
-            <h1 class="text-5xl font-extrabold leading-[1.02] tracking-normal text-ink sm:text-6xl lg:text-7xl">
+            <h1 class="text-4xl font-extrabold leading-[1.05] tracking-normal text-ink sm:text-6xl lg:text-7xl">
                 Portfolios, resources, and the good chaos of university life.
             </h1>
             <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/68">
@@ -35,7 +35,7 @@
             <div class="mt-4 grid grid-cols-3 gap-3" data-profile-thumbnails>
                 {% for member in members|slice:":3" %}
                     <div class="overflow-hidden rounded-lg border border-ink/10 bg-white">
-                        <img src="{{ member.image2.url }}" alt="{{ member.name }}" class="hero-thumb h-28 w-full object-cover" data-fallback-src="{% static 'img/safi-pro2.jpg' %}">
+                        <img src="{{ member.image2.url }}" alt="{{ member.name }}" class="hero-thumb h-20 w-full object-cover sm:h-28" data-fallback-src="{% static 'img/safi-pro2.jpg' %}">
                     </div>
                 {% endfor %}
             </div>
