@@ -329,7 +329,7 @@ input[type=submit],
 input[type=button],
 .submit-row input,
 a.button {
-    background: var(--primary) !important; /* Deep green for all admin buttons, including save buttons. */
+    background: #c5a56a !important; /* Deep green for all admin buttons, including save buttons. */
     border: 0; /* Removes default button border. */
     border-radius: 8px; /* Rounds button corners. */
     color: #ffffff !important; /* White text on all buttons. */
@@ -340,8 +340,16 @@ a.button {
 .button.default,
 input[type=submit].default,
 .submit-row input.default {
-    background: var(--primary) !important; /* Deep green for default save buttons. */
+    background: #c5a56a !important; /* Deep green for default save buttons. */
     color: #ffffff !important; /* White text on default save buttons. */
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover,
+a.button:hover {
+    background: var(--primary) !important; /* Lighter green hover state for all buttons. */ 
 }
 
 input,
@@ -361,10 +369,6 @@ select:focus {
     outline: none;
 }
 
-#nav-sidebar .current-app .section,
-#nav-sidebar .current-model {
-    background: #dff7ff !important; /* Light sky blue selected sidebar state. */
-}
 
 #nav-sidebar tr.current-model,
 #nav-sidebar tr.selected,
